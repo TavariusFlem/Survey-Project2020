@@ -1,0 +1,30 @@
+<div class="login-parent">
+  <form *ngIf="loginForm" novalidate [formGroup]="loginForm" (ngSubmit)="doLogin()">
+    <mat-card class="login-form">
+
+      <mat-card-header>
+        <div mat-card-avatar class="login-icon"></div>
+        <mat-card-title>PMAP</mat-card-title>
+        <mat-card-subtitle>Please login to continue.</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <mat-form-field>
+          <input matInput autofocus type="text" placeholder="email" formControlName="username" name="username">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput type="password" placeholder="password" formControlName="password" name="password">
+        </mat-form-field>
+        <mat-error *ngIf="errorMessage">{{errorMessage}}</mat-error>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid" name="login">
+          <span>login</span>
+        </button>
+        <!-- Temporary change until backend is set up -->
+      </mat-card-actions>
+
+    </mat-card>
+  </form>
+</div>

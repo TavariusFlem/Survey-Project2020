@@ -1,0 +1,58 @@
+/* Faith Hough */
+.sidenav-container{
+  position: relative;
+  height: 100%;
+  display: block;
+}
+
+/* this forces the sidenav to fit perfectly under the toolbar so they look like one unit */
+.sidenav{
+  width: 200px;
+  position: fixed;
+  z-index: 17;
+  margin-top: 50px;
+}
+
+.mat-toolbar{
+  background: #8a213a;
+  position: sticky;
+  z-index: 16;
+}
+
+/*the side buttons*/
+.mat-nav-list{
+  background-color: #8a213a;
+  border-color: black;
+}
+
+.mat-sidenav{
+  background: #8a213a;
+  border-color: black;
+  }
+
+.mat-list-item{
+  background: grey;
+  border-style: outset;
+  border-color: #8a213a;
+}
+.main-body {
+  padding-left: 0.8rem;
+  padding-right: 0;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin-left: 200px;
+  margin-top: 80px;
+  z-index: 18;
+}
+
+/* fixes the position of the toolbar so that it will always take up 60 pixels  */
+.mat-toolbar-cl{
+  position: fixed;
+  top: 0;
+  z-index:16;
+  height: 60px;
+}
+
+.mat-spacer{
+  flex: left;
+}

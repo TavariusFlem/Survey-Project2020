@@ -1,0 +1,41 @@
+<mat-card>
+  <mat-card>
+    <form [formGroup]="classForm" (ngSubmit)="onSubmit(studentList.selectedOptions.selected)">
+      <!-->  on file submission the onSubmit function is called<!-->
+      <input type="file" (change)="onFileChange($event)" id="file"/>
+
+      <br>
+      <br>
+
+      <input matInput placeholder="Class roster name" #box (keyup)="onKey(box.value)" type="text" formControlName="classRosterName" required>
+        <!--> updates values stored in typescript on key press <!-->
+      <mat-selection-list #studentList>
+        <mat-list-option selected *ngFor="let student of students" [value]="student">
+        {{ student.name + ' : ' + student.email + '   ' + student.group}}
+        </mat-list-option>
+      </mat-selection-list>
+
+      <button mat-raised-button type="submit" [disabled]="!classForm.valid" > Add selected roster </button>
+        <!--> button type is submit so the onSubmit method is called when pressed <!-->
+    </form>
+    <button mat-raised-button (click)="selectAll()">Select All</button>
+  </mat-card>
+  <br>
+  <div>
+    <mat-card>
+      <label> Rosters </label>
+
+      <mat-list>
+        <ng-container *ngFor = "let roster of rosters">
+          <mat-list-item>{{ roster.className }}</mat-list-item>
+          <mat-list style="margin-left:30px;">
+            <div *ngFor="let student of roster.students">
+                <mat-list-item>{{ student.name}} : {{ student.email}}    {{ student.group}}</mat-list-item>
+            </div>
+        </mat-list>
+        </ng-container>
+      </mat-list>
+    </mat-card>
+
+  </div>
+</mat-card>

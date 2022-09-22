@@ -1,0 +1,31 @@
+<!-- Faith Hough -->
+<!-- this is the home page for the admin user. It will have the toolbar with the change-pass and logout buttons. The admin user also has a sidenav which has buttons only the admin
+is allowed to access such as create-survey, survey-results, and my-classes. This component will be displayed constantly after the user logs in until they log out -->
+<mat-toolbar class="mat-toolbar-cl" color="primary" >
+  <span class="mat-spacer"></span>
+  <span>PMAP</span>
+  <div>
+    <a mat-button routerLink="/home/change-pass">Change Password</a>
+    <a mat-button routerLink="/login">Log Out</a>
+  </div>
+</mat-toolbar>
+
+<!-- This div will hold the other components to be displayed alongside the home component -->
+<div class="main-body">
+  <router-outlet></router-outlet>
+</div>
+
+<!-- Normally the sidenav will want to be closed until opened with a button push, to force it to always be open and displayed close has been disabled and it is set to open by default? -->
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav class="sidenav" fixedInViewport="true"  [opened]="true" disableClose="true">
+    <a mat-button style="height: 0; position: absolute;"> <!-- fake button that prevents the first mat-list-item from being highlighted by default -->
+     </a>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/home/my-surveys">My Surveys</a>
+      <a mat-list-item routerLink="/home/create-survey">Create a Survey</a>
+      <a mat-list-item routerLink="/home/survey-results">Survey Results</a>
+      <a mat-list-item routerLink="/home/add-administrator">Add an Administrator</a>
+      <a mat-list-item routerLink="/home/my-classes"> My Classes </a>
+    </mat-nav-list>
+  </mat-sidenav>
+</mat-sidenav-container>

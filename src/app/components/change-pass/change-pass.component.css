@@ -1,0 +1,14 @@
+/* Faith Hough */
+/* Formats the card-parent div that holds all of the content */
+.card-parent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* formats the mat-card-content for oldPass, newPass, and confirmPass */
+.card-form > mat-card-content > * {
+  width: 100%;
+}

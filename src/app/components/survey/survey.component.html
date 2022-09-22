@@ -1,0 +1,26 @@
+<mat-card *ngIf="loaded">
+  <mat-card-title class="surveyForm" *ngIf="survey.name">
+        Survey Name: {{survey.name}}
+  </mat-card-title>
+
+    <div class="questions" *ngFor="let question of survey.questions; let i = index;">
+      <h4>{{i+1}}     {{question.question}}</h4>
+          <label>Answer: </label>
+            <div *ngIf="question.type === 'radio'">
+                <mat-radio-group>
+                  <!-- [(ngModel)]="favoriteSeason"> -->
+                  <mat-radio-button *ngFor="let option of question.options" [value]="option.option">
+                      {{option.option}}
+                  </mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <div *ngIf="question.type === 'textbox'">
+              <textarea matInput placeholder="response"></textarea>
+            </div>
+            <div *ngIf="question.type === 'slider'">
+              <mat-slider thumbLabel min="0" max="100"></mat-slider>
+            </div>
+    </div>
+    <br><br><br>
+    <button mat-raised-button color="primary"  (click)="onSubmit()">Submit</button>
+</mat-card>

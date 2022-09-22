@@ -1,0 +1,61 @@
+<form [formGroup]="surveyForm">
+  <div class="surveyForm">
+    <mat-form-field>
+      <label>
+        Survey Name: <input matInput formControlName="name" />
+      </label>
+    </mat-form-field>
+  </div>
+
+  <div formArrayName="questions">
+    <div class="questions" *ngFor="let question of questions.controls;
+             let questionIndex = index" [formGroupName]="questionIndex"> {{questionIndex + 1}}
+      <button type="button" mat-icon-button (click)="removeQuestion(questionIndex)"><mat-icon>delete</mat-icon></button>
+       <mat-form-field>
+         <mat-select formControlName="type" placeholder="question type">
+           <mat-option [value]="choice" *ngFor="let choice of choices">{{ choice }}</mat-option>
+         </mat-select>
+       </mat-form-field>
+      <textarea matInput placeholder="type question here" formControlName="question"></textarea>
+      <div>
+          <label>Answer: </label>
+            <div *ngIf="question.get('type').value === 'radio'">
+              <button type="button" mat-icon-button (click)="addOption(question)"><mat-icon>add_box</mat-icon></button>
+              <div formArrayName="options">
+                <label class="optionStyling" *ngFor="let option of (this.getOptions(question)).controls; let i = index" [formGroupName]="i">
+                <input
+                  class="radioStyle"
+                  type="radio"
+                  name="answer"
+                  [value]="option.get('option').value"
+                />
+                <input matInput placeholder= "value" formControlName= "option">
+              </label>
+              </div>
+            </div>
+            <div *ngIf="question.get('type').value === 'textbox'">
+              <textarea matInput placeholder="response"></textarea>
+            </div>
+            <div *ngIf="question.get('type').value === 'slider'">
+              <mat-slider thumbLabel min="0" max="100"></mat-slider>
+            </div>
+        </div>
+    </div>
+</div>
+
+  <button type="button" mat-button (click)="addQuestion()"> Add question </button>
+  <br><br><br>
+  <ng-container>
+ <mat-label>Select a class to send: </mat-label>
+ <br>
+ <mat-form-field>
+  <mat-select formControlName="classID" >
+    <mat-option *ngFor="let roster of rosters" [value]="roster.className">
+      {{roster.className}}
+    </mat-option>
+  </mat-select>
+  </mat-form-field>
+  </ng-container>
+  <br><br><br>
+    <button mat-raised-button color="primary" (click)="onSubmit()">Save</button>
+</form>

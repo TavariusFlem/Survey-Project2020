@@ -1,0 +1,31 @@
+<!-- Faith Hough -->
+<!-- This component currently displays a drop down button that is supposed to show all of the students in all of the classes that the user thats signed in is currently the
+administrator of. After a students name has been selected Their email should be sent to the results service, then sent to get results. This does not currently work with the backend.
+Because getRoster returns all of the information from the Users table in the database we would have liked to create multiple drop down buttons to let the user select a class, group,
+and then student -->
+<h1>
+  Survey Results
+</h1>
+
+<!-- use getRoster to retrieve the students information -->
+<!-- Using *ngFor allows the button to add options on the fly from "students" which is an array of classRoster(contained in common.types) -->
+<div class="form-group">
+  <label>Select the student you would like to see results for: </label>
+  <mat-form-field>
+  <mat-select [(ngModel)]="selectedStudent" id="student" name="student">
+    <mat-option *ngFor="let class of students" [value]="class.email" (ngModelChange)='onStudentSelected($event)'>
+      {{class.name}}
+    </mat-option>
+  </mat-select>
+  </mat-form-field>
+</div>
+
+<!-- This is supposed to display the results first adding the question, then printing all of the responses for that one question -->
+<mat-card>
+  <mat-nav-list>
+  <mat-list-item *ngFor="let result of results">
+     <a matLine >{{ result.question_text }}</a>
+     <a matLine >{{ result.studentResults }}</a>
+  </mat-list-item>
+</mat-nav-list>
+</mat-card>

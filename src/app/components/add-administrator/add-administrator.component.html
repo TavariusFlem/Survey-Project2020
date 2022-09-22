@@ -1,0 +1,15 @@
+<form id="adminEmailForm" post="backend/backendMailer.php">
+  <!--> created a form to validate the email input <!-->
+  <mat-card>
+    <mat-card class="administration-card">Add administrator</mat-card>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Enter administrators email</mat-label>
+      <input matInput [formControl]="email" ng-model="newAdminEmail" required>
+      <mat-error *ngIf="email.invalid"> {{getErrorMessage()}} </mat-error>
+      <!--> displays error message givven by getErrorMessage() if the email is invalid <!-->
+    </mat-form-field>
+    <br>
+    <button mat-button (click)="sendAdministrationInvite()">Send Administration Invite</button>
+  </mat-card>
+</form>

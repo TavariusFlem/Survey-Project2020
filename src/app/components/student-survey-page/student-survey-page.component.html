@@ -1,0 +1,9 @@
+<mat-card>
+  <mat-nav-list>
+  <mat-list-item (click)="openSurvey(survey.surveyID)" *ngFor="let survey of surveys">
+    <div mat-line>
+      {{ survey.name }}
+    </div>
+  </mat-list-item>
+  </mat-nav-list>
+</mat-card>

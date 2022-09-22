@@ -1,0 +1,18 @@
+.mat-toolbar-cl{
+  background: #8a213a;
+  position: sticky;
+  top: 0;
+  z-index:10;
+  height: 100px;
+}
+.main-body {
+  padding-left: 0.8rem;
+  padding-right: 0;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.sidenav-container
+  {
+  height: 100%;
+  }

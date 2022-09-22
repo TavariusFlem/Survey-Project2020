@@ -1,0 +1,42 @@
+<!-- Faith Hough -->
+<!-- This component allows the user that is currently signed in to change their password after providing their current password. The new password will be entered twice to validate
+that it matches up both times and follows the restrictions defined for passwords.  -->
+<!-- card-parent sets the size of the div and aligns the content within it. When the form changePassForm has been submitted it will execute changePass() -->
+<div class="card-parent">
+  <form *ngIf="changePassForm" novalidate [formGroup]="changePassForm" (ngSubmit)="changePass()">
+    <mat-card class="card-form">
+
+      <mat-card-header>
+        <div mat-card-avatar class="login-icon"></div>
+        <mat-card-title>Change Password</mat-card-title>
+      </mat-card-header>
+
+      <!-- The mat-card-content holds the input fields for oldPass, newPass, and confirmPass. The input is of type "password" so that the entered text isn't plain -->
+      <mat-card-content>
+        <mat-form-field>
+          <input matInput autofocus type="password" placeholder="Old Password" formControlName="oldPass" name="oldPass">
+        </mat-form-field>
+
+        <!-- 'pattern'holds the rules for what characters can be included in a valid password and is stored in change-pass.component-ts.  -->
+        <mat-form-field>
+          <input matInput type="password" placeholder="New Password" formControlName="newPass" name="newPass">
+          <mat-error *ngIf="changePassForm.get('newPass').hasError('pattern') || changePassForm.get('newPass').hasError('minlength')">Password must be at least 6 characters aA-zZ and/or 0-9.</mat-error>
+        </mat-form-field>
+
+        <!-- *ngIf allows the error message to appear is 'mismatch' is true. errorStateMatcher notifies mismatch whenever it changes from true or false -->
+        <mat-form-field>
+          <input matInput type="password" placeholder="Confirm New Password" formControlName="confirmPass" name="confirmPass" [errorStateMatcher]="matcher">
+          <mat-error *ngIf="changePassForm.hasError('mismatch')">Passwords do not match!</mat-error>
+        </mat-form-field>
+      </mat-card-content>
+
+      <!-- This button will submit the form and run changePass(). The button will be disabled if the form is not valid -->
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="changePass()" [disabled]="!changePassForm.valid">
+          <span>Change Password</span>
+        </button>
+      </mat-card-actions>
+
+    </mat-card>
+  </form>
+</div>
